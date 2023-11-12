@@ -1,4 +1,4 @@
-﻿namespace Chess.Console; 
+﻿namespace ChessConsole; 
 
 using System;
 
@@ -6,6 +6,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World!");
+        var game = new Game();
+        game.Render();
     }
 }

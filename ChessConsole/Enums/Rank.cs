@@ -1,4 +1,4 @@
-﻿namespace Chess.Console.Enums;
+﻿namespace ChessConsole.Enums;
 
 public enum Rank
 {
