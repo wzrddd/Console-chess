@@ -2,13 +2,13 @@
 
 namespace ChessConsole.Pieces;
 
-public class Pawn(Color color, Coordinates coordinates) : Piece(color, coordinates)
+public class Bishop(Color color, Coordinates coordinates) : Piece(color, coordinates)
 {
     public override string ToString()
     {
-        return Color == Color.White ? "P" : "p";
+        return Color == Color.White ? "B" : "b";
     }
-
+    
     public override void Move(Coordinates coordinates)
     {
         throw new NotImplementedException();
