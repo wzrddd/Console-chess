@@ -2,16 +2,10 @@
 
 namespace ChessConsole.Pieces;
 
-public abstract class Piece
+public abstract class Piece(Color color, Coordinates coordinates)
 {
-    public Color Color;
-    public Coordinates Coordinates;
-
-    protected Piece(Color color, Coordinates coordinates)
-    {
-        Color = color;
-        Coordinates = coordinates;
-    }
+    public Color Color = color;
+    public Coordinates Coordinates = coordinates;
 
     public abstract void Move(Coordinates coordinates);
 }

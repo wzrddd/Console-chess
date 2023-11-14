@@ -2,13 +2,13 @@
 
 namespace ChessConsole.Pieces;
 
-public class Pawn(Color color, Coordinates coordinates) : Piece(color, coordinates)
+public class Rook(Color color, Coordinates coordinates) : Piece(color, coordinates)
 {
     public override string ToString()
     {
-        return Color == Color.White ? "P" : "p";
+        return Color == Color.White ? "R" : "r";
     }
-
+    
     public override void Move(Coordinates coordinates)
     {
         throw new NotImplementedException();
