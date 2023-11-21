@@ -8,9 +8,4 @@ public class Knight(Color color, Coordinates coordinates) : Piece(color, coordin
     {
         return Color == Color.White ? "N" : "n";
     }
-    
-    public override void Move(Coordinates coordinates)
-    {
-        throw new NotImplementedException();
-    }
 }
