@@ -8,9 +8,4 @@ public class Queen(Color color, Coordinates coordinates) : Piece(color, coordina
     {
         return Color == Color.White ? "Q" : "q";
     }
-    
-    public override void Move(Coordinates coordinates)
-    {
-        throw new NotImplementedException();
-    }
 }

@@ -8,9 +8,4 @@ public class Rook(Color color, Coordinates coordinates) : Piece(color, coordinat
     {
         return Color == Color.White ? "R" : "r";
     }
-    
-    public override void Move(Coordinates coordinates)
-    {
-        throw new NotImplementedException();
-    }
 }

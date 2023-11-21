@@ -8,9 +8,4 @@ public class Pawn(Color color, Coordinates coordinates) : Piece(color, coordinat
     {
         return Color == Color.White ? "P" : "p";
     }
-
-    public override void Move(Coordinates coordinates)
-    {
-        throw new NotImplementedException();
-    }
 }
