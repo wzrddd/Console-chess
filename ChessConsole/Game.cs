@@ -38,9 +38,9 @@ public class Game
     {
         for (int i = 7; i >= 0; i--)
         {
-            for (int j = 7; j >= 0; j--)
+            for (int j = 0; j < 8; j++)
             {
-                if (j == 7) Console.Write($"({i + 1})");
+                if (j == 0) Console.Write($"({i + 1})");
 
                 if (Pieces.ContainsKey(new Coordinates(i, (Rank)j)))
                     Console.Write($"[{Pieces[new Coordinates(i, (Rank)j)]}]");
