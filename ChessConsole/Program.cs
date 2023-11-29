@@ -17,9 +17,13 @@ internal class Program
             var mFrom = Console.ReadLine()!.ToCharArray();
             Console.Write("move to: ");
             var mTo = Console.ReadLine()!.ToCharArray();
+            
             var cordFrom = new Coordinates(mFrom[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mFrom[0].ToString().ToUpper()));
             var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
+
             game.Move(cordFrom, cordTo);
+            Console.Clear();
+            game.Render();
         }
     }
 }
