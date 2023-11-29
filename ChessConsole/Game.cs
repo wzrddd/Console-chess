@@ -52,13 +52,12 @@ public class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    public void Move(Coordinates fCord, Coordinates tCord)
+    public Piece Move(Coordinates fCord, Coordinates tCord)
     {
         var pieceToMove = Pieces[fCord];
         Pieces.Remove(fCord);
         pieceToMove.Coordinates = tCord;
         Pieces.Add(tCord, pieceToMove);
-        Console.Clear();
-        Render();
+        return pieceToMove;
     }
 }
