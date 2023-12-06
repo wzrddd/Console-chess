@@ -5,7 +5,7 @@ namespace ChessConsole;
 
 public class Game
 {
-    public Dictionary<Coordinates, Piece> Pieces = new()
+    public Dictionary<Coordinates, IPiece> Pieces = new()
     {
         {new Coordinates(0, Rank.A), new Rook(Color.White, new Coordinates(0, Rank.A))},
         {new Coordinates(0, Rank.B), new Knight(Color.White, new Coordinates(0, Rank.B))},
@@ -52,12 +52,18 @@ public class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    public Piece Move(Coordinates fCord, Coordinates tCord)
+    public IPiece Move(Coordinates fCord, Coordinates tCord)
     {
         var pieceToMove = Pieces[fCord];
-        Pieces.Remove(fCord);
-        pieceToMove.Coordinates = tCord;
-        Pieces.Add(tCord, pieceToMove);
-        return pieceToMove;
+        
+        if (pieceToMove.IsMoveValid(fCord, tCord))
+        {
+            Pieces.Remove(fCord);
+            pieceToMove.Coordinates = tCord;
+            Pieces.Add(tCord, pieceToMove);
+            return pieceToMove;
+        }
+
+        return null!;
     }
 }
