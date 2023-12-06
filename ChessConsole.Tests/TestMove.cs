@@ -1,5 +1,4 @@
 using ChessConsole.Enums;
-using ChessConsole.Exceptions;
 using ChessConsole.Pieces;
 
 namespace ChessConsole.Tests;
