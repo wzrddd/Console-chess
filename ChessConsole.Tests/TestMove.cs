@@ -8,7 +8,7 @@ namespace ChessConsole.Tests;
 public class TestMove
 {
     private readonly Game  _game = new ();
-    private readonly Dictionary<Coordinates, Piece> _testPosition = new ()
+    private readonly Dictionary<Coordinates, IPiece> _testPosition = new ()
     {
         {new Coordinates(0, Rank.A), new King(Color.White, new Coordinates(0, Rank.A))},
         {new Coordinates(0, Rank.B), new Queen(Color.White, new Coordinates(0, Rank.B))},
@@ -36,9 +36,7 @@ public class TestMove
     {
         var piece = _game.Pieces[cordFrom];
         
-        var action = _game.Move(cordFrom, cordTo);
-
-        return action == piece;
+        return piece.IsMoveValid(cordFrom, cordTo);
     }
     
     [TestMethod]
@@ -96,62 +94,56 @@ public class TestMove
     }
     
     [TestMethod]
-    [ExpectedException(typeof(InvalidMoveException))]
     public void TestInvalidPawnMove()
     {
         var cordFrom = new Coordinates(0, Rank.F);
         var cordTo = new Coordinates(0, Rank.G);
 
-        IsMoveValid(cordFrom, cordTo);
+        Assert.IsFalse(IsMoveValid(cordFrom, cordTo));
     }
     
     [TestMethod]
-    [ExpectedException(typeof(InvalidMoveException))]
     public void TestInvalidKingMove()
     {
         var cordFrom = new Coordinates(0, Rank.A);
         var cordTo = new Coordinates(3, Rank.A);
 
-        IsMoveValid(cordFrom, cordTo);
+        Assert.IsFalse(IsMoveValid(cordFrom, cordTo));
     }
     
     [TestMethod]
-    [ExpectedException(typeof(InvalidMoveException))]
     public void TestInvalidQueenMove()
     {
         var cordFrom = new Coordinates(0, Rank.B);
         var cordTo = new Coordinates(5, Rank.D);
 
-        IsMoveValid(cordFrom, cordTo);
+        Assert.IsFalse(IsMoveValid(cordFrom, cordTo));
     }
     
     [TestMethod]
-    [ExpectedException(typeof(InvalidMoveException))]
     public void TestInvalidRookMove()
     {
         var cordFrom = new Coordinates(0, Rank.C);
         var cordTo = new Coordinates(6, Rank.B);
 
-        IsMoveValid(cordFrom, cordTo);
+        Assert.IsFalse(IsMoveValid(cordFrom, cordTo));
     }
     
     [TestMethod]
-    [ExpectedException(typeof(InvalidMoveException))]
     public void TestInvalidBishopMove()
     {
         var cordFrom = new Coordinates(0, Rank.D);
         var cordTo = new Coordinates(3, Rank.H);
 
-        IsMoveValid(cordFrom, cordTo);
+        Assert.IsFalse(IsMoveValid(cordFrom, cordTo));
     }
     
     [TestMethod]
-    [ExpectedException(typeof(InvalidMoveException))]
     public void TestInvalidKnightMove()
     {
         var cordFrom = new Coordinates(0, Rank.E);
         var cordTo = new Coordinates(4, Rank.D);
 
-        IsMoveValid(cordFrom, cordTo);
+        Assert.IsFalse(IsMoveValid(cordFrom, cordTo));
     }
 }

@@ -2,8 +2,10 @@
 
 namespace ChessConsole.Pieces;
 
-public abstract class Piece(Color color, Coordinates coordinates)
+public interface IPiece
 {
-    public Color Color = color;
-    public Coordinates Coordinates = coordinates;
+    public Color Color { get; }
+    public Coordinates Coordinates { get; set; }
+    
+    bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo);
 }
