@@ -9,11 +9,13 @@ public class King(Color color, Coordinates coordinates) : IPiece
     
     public override string ToString()
     {
-        return Color == Color.White ? "\u2654" : "k";
+        return Color == Color.White ? "K" : "k";
     }
 
     public bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
-        throw new NotImplementedException();
+        var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
+        var yDiff = Math.Abs(cordFrom.File - cordTo.File);
+        return xDiff <= 1 && yDiff <= 1;
     }
 }
