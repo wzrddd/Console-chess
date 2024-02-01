@@ -14,6 +14,8 @@ public class Pawn(Color color, Coordinates coordinates) : IPiece
 
     public bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
-        throw new NotImplementedException();
+        var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
+        var yDiff = Math.Abs(cordFrom.File - cordTo.File);
+        return xDiff == 0 && yDiff == 1;
     }
 }

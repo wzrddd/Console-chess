@@ -25,6 +25,7 @@ internal class Program
             var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
             var move = game.Move(cordFrom, cordTo);
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             if (move != null)
             {
                 Console.Clear();
