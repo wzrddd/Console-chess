@@ -6,7 +6,6 @@ namespace ChessConsole.Tests;
 [TestClass]
 public class TestMove
 {
-    private readonly Game  _game = new ();
     private readonly Dictionary<Coordinates, IPiece> _testPosition = new ()
     {
         {new Coordinates(0, Rank.A), new King(Color.White, new Coordinates(0, Rank.A))},
@@ -28,12 +27,12 @@ public class TestMove
     [TestInitialize]
     public void Initialize()
     {
-        _game.Pieces = _testPosition;
+        Game.Pieces = _testPosition;
     }
     
     private bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
-        var piece = _game.Pieces[cordFrom];
+        var piece = Game.Pieces[cordFrom];
         
         return piece.IsMoveValid(cordFrom, cordTo);
     }
@@ -71,7 +70,7 @@ public class TestMove
         var cordFrom = new Coordinates(0, Rank.C);
         var cordTo = new Coordinates(5, Rank.C);
         
-        Assert.IsTrue(IsMoveValid(cordFrom, cordTo));
+        Assert.IsTrue(IsMoveValid(cordFrom, cordTo)); 
     }
     
     [TestMethod]
