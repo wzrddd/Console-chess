@@ -11,8 +11,7 @@ internal class Program
         Console.InputEncoding = System.Text.Encoding.UTF8;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         
-        var game = new Game();
-        game.Render();
+        Game.Render();
         
         while (true)
         {
@@ -23,13 +22,13 @@ internal class Program
             
             var cordFrom = new Coordinates(mFrom[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mFrom[0].ToString().ToUpper()));
             var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
-            var move = game.Move(cordFrom, cordTo);
+            var move = Game.Move(cordFrom, cordTo);
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             if (move != null)
             {
                 Console.Clear();
-                game.Render();
+                Game.Render();
             }
             else
             {

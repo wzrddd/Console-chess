@@ -3,9 +3,9 @@ using ChessConsole.Pieces;
 
 namespace ChessConsole;
 
-public class Game
+public static class Game
 {
-    public Dictionary<Coordinates, IPiece> Pieces = new()
+    public static Dictionary<Coordinates, IPiece> Pieces = new()
     {
         {new Coordinates(0, Rank.A), new Rook(Color.White, new Coordinates(0, Rank.A))},
         {new Coordinates(0, Rank.B), new Knight(Color.White, new Coordinates(0, Rank.B))},
@@ -25,7 +25,7 @@ public class Game
         {new Coordinates(7, Rank.H), new Rook(Color.Black, new Coordinates(7, Rank.H))}
     };
     
-    public Game()
+    static Game()
     {
         for (int i = 0; i < 8; i++)
         {
@@ -34,7 +34,7 @@ public class Game
         }
     }
 
-    public void Render()
+    public static void Render()
     {
         for (int i = 7; i >= 0; i--)
         {
@@ -52,7 +52,7 @@ public class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    public IPiece Move(Coordinates fCord, Coordinates tCord)
+    public static IPiece Move(Coordinates fCord, Coordinates tCord)
     {
         var pieceToMove = Pieces[fCord];
         
