@@ -16,6 +16,7 @@ public class King(Color color, Coordinates coordinates) : IPiece
     {
         var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
-        return xDiff <= 1 && yDiff <= 1;
+        
+        return xDiff <= 1 && yDiff <= 1 && !Game.Pieces.ContainsKey(cordTo);
     }
 }
