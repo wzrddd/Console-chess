@@ -5,7 +5,7 @@ namespace ChessConsole.Tests;
 
 public class PieceMove
 {
-    private readonly Dictionary<Coordinates, IPiece> _testPosition = new ()
+    private readonly Dictionary<Coordinates, Piece> _testPosition = new ()
     {
         {new Coordinates(0, Rank.A), new King(Color.White, new Coordinates(0, Rank.A))},
         {new Coordinates(0, Rank.B), new Queen(Color.White, new Coordinates(0, Rank.B))},

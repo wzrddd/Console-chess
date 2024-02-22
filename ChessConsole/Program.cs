@@ -15,25 +15,7 @@ internal class Program
         
         while (true)
         {
-            Console.Write("pick piece: ");
-            var mFrom = Console.ReadLine()!.ToCharArray();
-            Console.Write("move to: ");
-            var mTo = Console.ReadLine()!.ToCharArray();
-            
-            var cordFrom = new Coordinates(mFrom[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mFrom[0].ToString().ToUpper()));
-            var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
-            var move = Game.Move(cordFrom, cordTo);
-
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-            if (move != null)
-            {
-                Console.Clear();
-                Game.Render();
-            }
-            else
-            {
-                Console.WriteLine("Move is not valid");
-            }
+            Game.Loop();
         }
     }
 }
