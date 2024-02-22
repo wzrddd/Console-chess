@@ -2,17 +2,14 @@
 
 namespace ChessConsole.Pieces;
 
-public class Bishop(Color color, Coordinates coordinates) : IPiece
+public class Bishop(Color color, Coordinates coordinates) : Piece(color, coordinates)
 {
-    public Color Color { get; } = color;
-    public Coordinates Coordinates { get; set; } = coordinates;
-
     public override string ToString()
     {
         return Color == Color.White ? "B" : "b";
     }
 
-    public bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
+    public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
         var yMin = Math.Min(cordFrom.File, cordTo.File); 
         var xMin = Math.Min((int)cordFrom.Rank, (int)cordTo.Rank);
@@ -31,6 +28,11 @@ public class Bishop(Color color, Coordinates coordinates) : IPiece
                 return false;
             }
             j++;
+        }
+
+        if (Game.Pieces.ContainsKey(cordTo))
+        {
+            return TryTake(cordFrom, cordTo);
         }
 
         return true;

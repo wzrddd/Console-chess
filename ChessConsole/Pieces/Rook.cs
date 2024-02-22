@@ -2,17 +2,14 @@
 
 namespace ChessConsole.Pieces;
 
-public class Rook(Color color, Coordinates coordinates) : IPiece 
+public class Rook(Color color, Coordinates coordinates) : Piece(color, coordinates) 
 {
-    public Color Color { get; } = color;
-    public Coordinates Coordinates { get; set; } = coordinates;
-    
     public override string ToString()
     {
         return Color == Color.White ? "R" : "r";
     }
     
-    public bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
+    public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
         if (cordFrom.Rank == cordTo.Rank)
         {
@@ -25,6 +22,12 @@ public class Rook(Color color, Coordinates coordinates) : IPiece
                     return false;
                 }
             }
+
+            if (Game.Pieces.ContainsKey(cordTo))
+            {
+                return TryTake(cordFrom, cordTo);
+            }
+            
             return true;
         }
         
@@ -39,6 +42,12 @@ public class Rook(Color color, Coordinates coordinates) : IPiece
                     return false;
                 }
             }
+            
+            if (Game.Pieces.ContainsKey(cordTo))
+            {
+                return TryTake(cordFrom, cordTo);
+            }
+            
             return true;
         }
         return false;

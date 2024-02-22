@@ -2,20 +2,18 @@
 
 namespace ChessConsole.Pieces;
 
-public class Queen(Color color, Coordinates coordinates) : IPiece
+public class Queen(Color color, Coordinates coordinates) : Piece(color, coordinates)
 {
-    public Color Color { get; } = color;
-    public Coordinates Coordinates { get; set; } = coordinates;
-    
     public override string ToString()
     {
         return Color == Color.White ? "Q" : "q";
     }
 
-    public bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
+    public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
         var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
+        var isMoveCorrect = xDiff == yDiff || cordFrom.Rank == cordTo.Rank || cordFrom.File == cordTo.File;
 
         if (xDiff == yDiff)
         {
@@ -60,6 +58,11 @@ public class Queen(Color color, Coordinates coordinates) : IPiece
             }
         }
         
-        return xDiff == yDiff || cordFrom.Rank == cordTo.Rank || cordFrom.File == cordTo.File;
+        if (Game.Pieces.ContainsKey(cordTo) && isMoveCorrect)
+        {
+            return TryTake(cordFrom, cordTo);
+        }
+        
+        return isMoveCorrect;
     }
 }

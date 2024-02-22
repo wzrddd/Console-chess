@@ -1,11 +1,12 @@
 ﻿using ChessConsole.Enums;
+using ChessConsole.Extensions;
 using ChessConsole.Pieces;
 
 namespace ChessConsole;
 
 public static class Game
 {
-    public static Dictionary<Coordinates, IPiece> Pieces = new()
+    public static Dictionary<Coordinates, Piece> Pieces = new()
     {
         {new Coordinates(0, Rank.A), new Rook(Color.White, new Coordinates(0, Rank.A))},
         {new Coordinates(0, Rank.B), new Knight(Color.White, new Coordinates(0, Rank.B))},
@@ -52,18 +53,38 @@ public static class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    public static IPiece Move(Coordinates fCord, Coordinates tCord)
+    public static Piece Move(Coordinates cordFrom, Coordinates cordTo)
     {
-        var pieceToMove = Pieces[fCord];
+        var pieceToMove = Pieces[cordFrom];
         
-        if (pieceToMove.IsMoveValid(fCord, tCord))
+        if (pieceToMove.IsMoveValid(cordFrom, cordTo))
         {
-            Pieces.Remove(fCord);
-            pieceToMove.Coordinates = tCord;
-            Pieces.Add(tCord, pieceToMove);
+            pieceToMove.Coordinates = cordTo;
+            Pieces.ChangeKey(cordFrom, cordTo);
             return pieceToMove;
         }
 
         return null!;
+    }
+
+    public static void Loop()
+    {
+        Console.Write("pick piece: ");
+        var mFrom = Console.ReadLine()!.ToCharArray();
+        Console.Write("move to: ");
+        var mTo = Console.ReadLine()!.ToCharArray();
+            
+        var cordFrom = new Coordinates(mFrom[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mFrom[0].ToString().ToUpper()));
+        var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
+        var move = Move(cordFrom, cordTo);
+
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (move != null)
+        {
+            Console.Clear();
+            Render();
+        }
+        else
+            Console.WriteLine("Move is not valid");
     }
 }
