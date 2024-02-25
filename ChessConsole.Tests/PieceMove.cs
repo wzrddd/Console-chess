@@ -21,6 +21,13 @@ public class PieceMove
         {new Coordinates(7, Rank.D), new Bishop(Color.Black, new Coordinates(0, Rank.D))},
         {new Coordinates(7, Rank.E), new Knight(Color.Black, new Coordinates(0, Rank.E))},
         {new Coordinates(7, Rank.F), new Pawn(Color.Black, new Coordinates(0, Rank.F))},
+        
+        {new Coordinates(6, Rank.A), new King(Color.Black, new Coordinates(0, Rank.A))},
+        {new Coordinates(6, Rank.B), new Queen(Color.Black, new Coordinates(0, Rank.B))},
+        {new Coordinates(6, Rank.C), new Rook(Color.Black, new Coordinates(0, Rank.C))},
+        {new Coordinates(6, Rank.D), new Bishop(Color.Black, new Coordinates(0, Rank.D))},
+        {new Coordinates(6, Rank.E), new Knight(Color.Black, new Coordinates(0, Rank.E))},
+        {new Coordinates(6, Rank.F), new Pawn(Color.Black, new Coordinates(0, Rank.F))},
     };
     
     public class CoordinatesTestCase(Coordinates cordFrom, Coordinates cordTo, bool result, string testName)
@@ -51,6 +58,12 @@ public class PieceMove
                 new Coordinates(4, Rank.F), 
                 false,
                 "TestInvalidPawnMove");
+
+            yield return new CoordinatesTestCase(
+                new Coordinates(7, Rank.F),
+                new Coordinates(5, Rank.F),
+                false,
+                "TestBlockPawnMove");
             
             yield return new CoordinatesTestCase(
                 new Coordinates(0, Rank.E),
@@ -65,6 +78,12 @@ public class PieceMove
                 "TestInvalidKnightMove");
             
             yield return new CoordinatesTestCase(
+                new Coordinates(7, Rank.E),
+                new Coordinates(5, Rank.F),
+                true,
+                "TestBlockKnightMove");
+            
+            yield return new CoordinatesTestCase(
                 new Coordinates(0, Rank.D),
                 new Coordinates(4, Rank.H), 
                 true,
@@ -77,6 +96,12 @@ public class PieceMove
                 "TestInvalidBishopMove");
             
             yield return new CoordinatesTestCase(
+                new Coordinates(7, Rank.D),
+                new Coordinates(5, Rank.B),
+                false,
+                "TestBlockBishopMove");
+            
+            yield return new CoordinatesTestCase(
                 new Coordinates(0, Rank.C),
                 new Coordinates(5, Rank.C), 
                 true,
@@ -84,9 +109,15 @@ public class PieceMove
             
             yield return new CoordinatesTestCase(
                 new Coordinates(0, Rank.C),
-                new Coordinates(6, Rank.B), 
+                new Coordinates(5, Rank.B), 
                 false,
                 "TestInvalidRookMove");
+            
+            yield return new CoordinatesTestCase(
+                new Coordinates(7, Rank.C),
+                new Coordinates(5, Rank.C),
+                false,
+                "TestBlockRookMove");
             
             yield return new CoordinatesTestCase(
                 new Coordinates(0, Rank.B),
@@ -99,6 +130,12 @@ public class PieceMove
                 new Coordinates(5, Rank.D), 
                 false,
                 "TestInvalidQueenMove");
+            
+            yield return new CoordinatesTestCase(
+                new Coordinates(7, Rank.B),
+                new Coordinates(5, Rank.B),
+                false,
+                "TestBlockQueenMove");
             
             yield return new CoordinatesTestCase(
                 new Coordinates(0, Rank.A),
