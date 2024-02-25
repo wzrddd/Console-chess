@@ -1,6 +1,4 @@
-﻿using ChessConsole.Enums;
-
-namespace ChessConsole; 
+﻿namespace ChessConsole; 
 
 using System;
 
