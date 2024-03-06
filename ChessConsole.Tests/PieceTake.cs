@@ -64,6 +64,18 @@ public class PieceTake
         }
     }
 
+    private static IEnumerable<PieceTestCase> PieceTakeInvalidTestCases
+    {
+        get
+        {
+            yield return new PieceTestCase(
+                new Coordinates(3, Rank.E),
+                new Coordinates(2, Rank.F), 
+                false, 
+                "TryToTakeAlly");
+        }
+    }
+
     [SetUp]
     public void Setup()
     {
@@ -72,6 +84,15 @@ public class PieceTake
 
     [Test, TestCaseSource(nameof(PieceTakeEnemyValidTestCases))]
     public void TakeEnemyValid(PieceTestCase coordinatesTestCase)
+    {
+        var piece = Game.Pieces[coordinatesTestCase.CordFrom];
+        var isMoveValid = piece.IsMoveValid(coordinatesTestCase.CordFrom, coordinatesTestCase.CordTo);
+        
+        Assert.That(isMoveValid, Is.EqualTo(coordinatesTestCase.Result));
+    }
+    
+    [Test, TestCaseSource(nameof(PieceTakeInvalidTestCases))]
+    public void TakeEnemyInvalid(PieceTestCase coordinatesTestCase)
     {
         var piece = Game.Pieces[coordinatesTestCase.CordFrom];
         var isMoveValid = piece.IsMoveValid(coordinatesTestCase.CordFrom, coordinatesTestCase.CordTo);
