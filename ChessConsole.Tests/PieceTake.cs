@@ -7,31 +7,60 @@ public class PieceTake
 {
     private readonly Dictionary<Coordinates, Piece> _testPosition = new ()
     {
-        {new Coordinates(0, Rank.A), new King(Color.White, new Coordinates(0, Rank.A))},
-        {new Coordinates(0, Rank.B), new Queen(Color.White, new Coordinates(0, Rank.B))},
-        {new Coordinates(0, Rank.C), new Rook(Color.White, new Coordinates(0, Rank.C))},
-        {new Coordinates(0, Rank.D), new Bishop(Color.White, new Coordinates(0, Rank.D))},
-        {new Coordinates(0, Rank.E), new Knight(Color.White, new Coordinates(0, Rank.E))},
-        {new Coordinates(0, Rank.F), new Pawn(Color.White, new Coordinates(0, Rank.F))},
-            
-            
-        {new Coordinates(7, Rank.A), new King(Color.Black, new Coordinates(0, Rank.A))},
-        {new Coordinates(7, Rank.B), new Queen(Color.Black, new Coordinates(0, Rank.B))},
-        {new Coordinates(7, Rank.C), new Rook(Color.Black, new Coordinates(0, Rank.C))},
-        {new Coordinates(7, Rank.D), new Bishop(Color.Black, new Coordinates(0, Rank.D))},
-        {new Coordinates(7, Rank.E), new Knight(Color.Black, new Coordinates(0, Rank.E))},
-        {new Coordinates(7, Rank.F), new Pawn(Color.Black, new Coordinates(0, Rank.F))},
+        {new Coordinates(0, Rank.A), new King(Color.White)},
+        {new Coordinates(0, Rank.B), new Queen(Color.White)},
+        {new Coordinates(0, Rank.C), new Rook(Color.White)},
+        {new Coordinates(0, Rank.D), new Bishop(Color.White)},
+        {new Coordinates(0, Rank.E), new Knight(Color.White)},
+        {new Coordinates(0, Rank.F), new Pawn(Color.White)},
+
+        {new Coordinates(1, Rank.G), new Pawn(Color.Black)},
+        {new Coordinates(2, Rank.F), new Pawn(Color.Black)},
+        {new Coordinates(1, Rank.D), new Pawn(Color.Black)},
+        {new Coordinates(4, Rank.C), new Pawn(Color.Black)},
+        {new Coordinates(3, Rank.E), new Pawn(Color.Black)},
+        {new Coordinates(1, Rank.A), new Pawn(Color.Black)},
     };
 
-    private static IEnumerable<PieceTestCase> PieceTakeEnemyTestCases
+    private static IEnumerable<PieceTestCase> PieceTakeEnemyValidTestCases
     {
         get
         {
             yield return new PieceTestCase(
                 new Coordinates(0, Rank.F),
-                new Coordinates(1, Rank.F), 
+                new Coordinates(1, Rank.G), 
                 true, 
-                "TestValidPawnMove");
+                "PawnTakeValid");
+            
+            yield return new PieceTestCase(
+                new Coordinates(0, Rank.E),
+                new Coordinates(2, Rank.F), 
+                true, 
+                "KnightTakeValid"); 
+            
+            yield return new PieceTestCase(
+                new Coordinates(0, Rank.D),
+                new Coordinates(2, Rank.B), 
+                true, 
+                "BishopTakeValid");
+            
+            yield return new PieceTestCase(
+                new Coordinates(0, Rank.C),
+                new Coordinates(4, Rank.C), 
+                true, 
+                "RookTakeValid");
+            
+            yield return new PieceTestCase(
+                new Coordinates(0, Rank.B),
+                new Coordinates(3, Rank.E), 
+                true, 
+                "QueenTakeValid");
+            
+            yield return new PieceTestCase(
+                new Coordinates(0, Rank.A),
+                new Coordinates(1, Rank.A), 
+                true, 
+                "KingTakeValid");
         }
     }
 
@@ -41,8 +70,8 @@ public class PieceTake
         Game.Pieces = _testPosition;
     }
 
-    [Test, TestCaseSource(nameof(PieceTakeEnemyTestCases))]
-    public void TestMove(PieceTestCase coordinatesTestCase)
+    [Test, TestCaseSource(nameof(PieceTakeEnemyValidTestCases))]
+    public void TakeEnemyValid(PieceTestCase coordinatesTestCase)
     {
         var piece = Game.Pieces[coordinatesTestCase.CordFrom];
         var isMoveValid = piece.IsMoveValid(coordinatesTestCase.CordFrom, coordinatesTestCase.CordTo);

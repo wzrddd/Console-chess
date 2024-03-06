@@ -7,27 +7,26 @@ public class PieceMove
 {
     private readonly Dictionary<Coordinates, Piece> _testPosition = new ()
     {
-        {new Coordinates(0, Rank.A), new King(Color.White, new Coordinates(0, Rank.A))},
-        {new Coordinates(0, Rank.B), new Queen(Color.White, new Coordinates(0, Rank.B))},
-        {new Coordinates(0, Rank.C), new Rook(Color.White, new Coordinates(0, Rank.C))},
-        {new Coordinates(0, Rank.D), new Bishop(Color.White, new Coordinates(0, Rank.D))},
-        {new Coordinates(0, Rank.E), new Knight(Color.White, new Coordinates(0, Rank.E))},
-        {new Coordinates(0, Rank.F), new Pawn(Color.White, new Coordinates(0, Rank.F))},
-            
-            
-        {new Coordinates(7, Rank.A), new King(Color.Black, new Coordinates(0, Rank.A))},
-        {new Coordinates(7, Rank.B), new Queen(Color.Black, new Coordinates(0, Rank.B))},
-        {new Coordinates(7, Rank.C), new Rook(Color.Black, new Coordinates(0, Rank.C))},
-        {new Coordinates(7, Rank.D), new Bishop(Color.Black, new Coordinates(0, Rank.D))},
-        {new Coordinates(7, Rank.E), new Knight(Color.Black, new Coordinates(0, Rank.E))},
-        {new Coordinates(7, Rank.F), new Pawn(Color.Black, new Coordinates(0, Rank.F))},
-        
-        {new Coordinates(6, Rank.A), new King(Color.Black, new Coordinates(0, Rank.A))},
-        {new Coordinates(6, Rank.B), new Queen(Color.Black, new Coordinates(0, Rank.B))},
-        {new Coordinates(6, Rank.C), new Rook(Color.Black, new Coordinates(0, Rank.C))},
-        {new Coordinates(6, Rank.D), new Bishop(Color.Black, new Coordinates(0, Rank.D))},
-        {new Coordinates(6, Rank.E), new Knight(Color.Black, new Coordinates(0, Rank.E))},
-        {new Coordinates(6, Rank.F), new Pawn(Color.Black, new Coordinates(0, Rank.F))},
+        {new Coordinates(0, Rank.A), new King(Color.White)},
+        {new Coordinates(0, Rank.B), new Queen(Color.White)},
+        {new Coordinates(0, Rank.C), new Rook(Color.White)},
+        {new Coordinates(0, Rank.D), new Bishop(Color.White)},
+        {new Coordinates(0, Rank.E), new Knight(Color.White)},
+        {new Coordinates(0, Rank.F), new Pawn(Color.White)},
+
+        {new Coordinates(7, Rank.A), new King(Color.Black)},
+        {new Coordinates(7, Rank.B), new Queen(Color.Black)},
+        {new Coordinates(7, Rank.C), new Rook(Color.Black)},
+        {new Coordinates(7, Rank.D), new Bishop(Color.Black)},
+        {new Coordinates(7, Rank.E), new Knight(Color.Black)},
+        {new Coordinates(7, Rank.F), new Pawn(Color.Black)},
+
+        {new Coordinates(6, Rank.A), new King(Color.Black)},
+        {new Coordinates(6, Rank.B), new Queen(Color.Black)},
+        {new Coordinates(6, Rank.C), new Rook(Color.Black)},
+        {new Coordinates(6, Rank.D), new Bishop(Color.Black)},
+        {new Coordinates(6, Rank.E), new Knight(Color.Black)},
+        {new Coordinates(6, Rank.F), new Pawn(Color.Black)}
     };
     
     private static IEnumerable<PieceTestCase> PieceValidMoveTestCases
