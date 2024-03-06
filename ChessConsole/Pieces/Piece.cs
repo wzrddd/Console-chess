@@ -3,10 +3,9 @@ using ChessConsole.Extensions;
 
 namespace ChessConsole.Pieces;
 
-public abstract class Piece(Color color, Coordinates coordinates)
+public abstract class Piece(Color color)
 {
     public Color Color { get; } = color;
-    public Coordinates Coordinates { get; set; } = coordinates;
     
     public abstract bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo);
     

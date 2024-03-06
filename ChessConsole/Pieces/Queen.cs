@@ -2,7 +2,7 @@
 
 namespace ChessConsole.Pieces;
 
-public class Queen(Color color, Coordinates coordinates) : Piece(color, coordinates)
+public class Queen(Color color) : Piece(color)
 {
     public override string ToString()
     {

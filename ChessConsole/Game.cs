@@ -8,30 +8,30 @@ public static class Game
 {
     public static Dictionary<Coordinates, Piece> Pieces = new()
     {
-        {new Coordinates(0, Rank.A), new Rook(Color.White, new Coordinates(0, Rank.A))},
-        {new Coordinates(0, Rank.B), new Knight(Color.White, new Coordinates(0, Rank.B))},
-        {new Coordinates(0, Rank.C), new Bishop(Color.White, new Coordinates(0, Rank.C))},
-        {new Coordinates(0, Rank.D), new Queen(Color.White, new Coordinates(0, Rank.D))},
-        {new Coordinates(0, Rank.E), new King(Color.White, new Coordinates(0, Rank.E))},
-        {new Coordinates(0, Rank.F), new Bishop(Color.White, new Coordinates(0, Rank.F))},
-        {new Coordinates(0, Rank.G), new Knight(Color.White, new Coordinates(0, Rank.G))},
-        {new Coordinates(0, Rank.H), new Rook(Color.White, new Coordinates(0, Rank.H))},
-        {new Coordinates(7, Rank.A), new Rook(Color.Black, new Coordinates(7, Rank.A))},
-        {new Coordinates(7, Rank.B), new Knight(Color.Black, new Coordinates(7, Rank.B))},
-        {new Coordinates(7, Rank.C), new Bishop(Color.Black, new Coordinates(7, Rank.C))},
-        {new Coordinates(7, Rank.D), new Queen(Color.Black, new Coordinates(7, Rank.D))},
-        {new Coordinates(7, Rank.E), new King(Color.Black, new Coordinates(7, Rank.E))},
-        {new Coordinates(7, Rank.F), new Bishop(Color.Black, new Coordinates(7, Rank.F))},
-        {new Coordinates(7, Rank.G), new Knight(Color.Black, new Coordinates(7, Rank.G))},
-        {new Coordinates(7, Rank.H), new Rook(Color.Black, new Coordinates(7, Rank.H))}
+        {new Coordinates(0, Rank.A), new Rook(Color.White)},
+        {new Coordinates(0, Rank.B), new Knight(Color.White)},
+        {new Coordinates(0, Rank.C), new Bishop(Color.White)},
+        {new Coordinates(0, Rank.D), new Queen(Color.White)},
+        {new Coordinates(0, Rank.E), new King(Color.White)},
+        {new Coordinates(0, Rank.F), new Bishop(Color.White)},
+        {new Coordinates(0, Rank.G), new Knight(Color.White)},
+        {new Coordinates(0, Rank.H), new Rook(Color.White)},
+        {new Coordinates(7, Rank.A), new Rook(Color.Black)},
+        {new Coordinates(7, Rank.B), new Knight(Color.Black)},
+        {new Coordinates(7, Rank.C), new Bishop(Color.Black)},
+        {new Coordinates(7, Rank.D), new Queen(Color.Black)},
+        {new Coordinates(7, Rank.E), new King(Color.Black)},
+        {new Coordinates(7, Rank.F), new Bishop(Color.Black)},
+        {new Coordinates(7, Rank.G), new Knight(Color.Black)},
+        {new Coordinates(7, Rank.H), new Rook(Color.Black)}
     };
     
     static Game()
     {
         for (int i = 0; i < 8; i++)
         {
-            Pieces.Add(new Coordinates(1, (Rank)i), new Pawn(Color.White, new Coordinates(1, (Rank)i)));
-            Pieces.Add(new Coordinates(6, (Rank)i), new Pawn(Color.Black, new Coordinates(6, (Rank)i)));
+            Pieces.Add(new Coordinates(1, (Rank)i), new Pawn(Color.White));
+            Pieces.Add(new Coordinates(6, (Rank)i), new Pawn(Color.Black));
         }
     }
 
@@ -59,7 +59,6 @@ public static class Game
         
         if (pieceToMove.IsMoveValid(cordFrom, cordTo))
         {
-            pieceToMove.Coordinates = cordTo;
             Pieces.ChangeKey(cordFrom, cordTo);
             return pieceToMove;
         }

@@ -2,7 +2,7 @@
 
 namespace ChessConsole.Pieces;
 
-public class Bishop(Color color, Coordinates coordinates) : Piece(color, coordinates)
+public class Bishop(Color color) : Piece(color)
 {
     public override string ToString()
     {
