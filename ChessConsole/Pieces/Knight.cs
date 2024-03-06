@@ -2,7 +2,7 @@
 
 namespace ChessConsole.Pieces;
 
-public class Knight(Color color, Coordinates coordinates) : Piece(color, coordinates)
+public class Knight(Color color) : Piece(color)
 {
     public override string ToString()
     {

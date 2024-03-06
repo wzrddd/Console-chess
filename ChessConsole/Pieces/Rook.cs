@@ -2,7 +2,7 @@
 
 namespace ChessConsole.Pieces;
 
-public class Rook(Color color, Coordinates coordinates) : Piece(color, coordinates) 
+public class Rook(Color color) : Piece(color) 
 {
     public override string ToString()
     {

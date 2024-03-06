@@ -2,7 +2,7 @@
 
 namespace ChessConsole.Pieces;
 
-public class King(Color color, Coordinates coordinates) : Piece(color, coordinates)
+public class King(Color color) : Piece(color)
 {
     public override string ToString()
     {
