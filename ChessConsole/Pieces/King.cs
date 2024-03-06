@@ -13,7 +13,7 @@ public class King(Color color) : Piece(color)
     {
         var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
-        var isMoveCorrect = xDiff <= 1 && yDiff <= 1 && !Game.Pieces.ContainsKey(cordTo);
+        var isMoveCorrect = xDiff <= 1 && yDiff <= 1;
 
         if (Game.Pieces.ContainsKey(cordTo) && isMoveCorrect)
         {

@@ -13,8 +13,7 @@ public class Knight(Color color) : Piece(color)
     {
         var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
-        var isMoveCorrect = ((xDiff == 2 && yDiff == 2) || (xDiff == 1 && yDiff == 2)) &&
-                            !Game.Pieces.ContainsKey(cordTo);
+        var isMoveCorrect = ((xDiff == 2 && yDiff == 2) || (xDiff == 1 && yDiff == 2));
         
         if (Game.Pieces.ContainsKey(cordTo) && isMoveCorrect)
         {
