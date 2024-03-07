@@ -11,15 +11,20 @@ public class Pawn(Color color) : Piece(color)
 
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
-        var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
-        var yDiff = Math.Abs(cordFrom.File - cordTo.File);
-        var isMoveCorrect = xDiff == 0 && yDiff == 1;
+        var piece = Game.Pieces[cordFrom];
         
-        if (Game.Pieces.ContainsKey(cordTo) && isMoveCorrect)
-        {
+        var isMoveCorrect = piece.Color == Color.White
+            ? cordTo.File - cordFrom.File == 1
+            : cordFrom.File - cordTo.File == 1;
+        
+        if (Game.Pieces.ContainsKey(cordTo))
             return TryTake(cordFrom, cordTo);
-        }
         
         return isMoveCorrect;
+    }
+
+    public override bool TryTake(Coordinates cordFrom, Coordinates cordTo)
+    {
+        return false;
     }
 }
