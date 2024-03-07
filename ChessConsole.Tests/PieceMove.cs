@@ -40,6 +40,12 @@ public class PieceMove
                 "TestValidPawnMove");
             
             yield return new PieceTestCase(
+                new Coordinates(4, Rank.F),
+                new Coordinates(6, Rank.F), 
+                true, 
+                "TestValidPawnMove");
+            
+            yield return new PieceTestCase(
                 new Coordinates(0, Rank.E),
                 new Coordinates(2, Rank.F), 
                 true,
