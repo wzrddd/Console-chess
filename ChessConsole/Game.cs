@@ -6,6 +6,8 @@ namespace ChessConsole;
 
 public static class Game
 {
+    private static Color _turn = Color.White;
+
     public static Dictionary<Coordinates, Piece> Pieces = new()
     {
         {new Coordinates(0, Rank.A), new Rook(Color.White)},
@@ -57,20 +59,23 @@ public static class Game
     {
         var pieceToMove = Pieces[cordFrom];
         
-        if (pieceToMove.IsMoveValid(cordFrom, cordTo))
+        if (pieceToMove.IsMoveValid(cordFrom, cordTo) && pieceToMove.Color == _turn)
         {
             Pieces.ChangeKey(cordFrom, cordTo);
+            _turn = _turn == Color.White ? Color.Black : Color.White;
+            
             return pieceToMove;
         }
-
+        
         return null!;
     }
 
     public static void Loop()
     {
-        Console.Write("pick piece: ");
+        Console.WriteLine($"{_turn} turn!");
+        Console.Write("Pick piece: ");
         var mFrom = Console.ReadLine()!.ToCharArray();
-        Console.Write("move to: ");
+        Console.Write("Move to: ");
         var mTo = Console.ReadLine()!.ToCharArray();
             
         var cordFrom = new Coordinates(mFrom[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mFrom[0].ToString().ToUpper()));

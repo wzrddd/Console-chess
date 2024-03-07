@@ -20,6 +20,12 @@ public class PieceTake
         {new Coordinates(4, Rank.C), new Pawn(Color.Black)},
         {new Coordinates(3, Rank.E), new Pawn(Color.Black)},
         {new Coordinates(1, Rank.A), new Pawn(Color.Black)},
+        
+        {new Coordinates(7, Rank.F), new Pawn(Color.Black)},
+        {new Coordinates(6, Rank.E), new Pawn(Color.White)},
+        {new Coordinates(5, Rank.E), new Pawn(Color.Black)},
+        {new Coordinates(5, Rank.C), new Pawn(Color.White)},
+        {new Coordinates(4, Rank.D), new Pawn(Color.Black)},
     };
 
     private static IEnumerable<PieceTestCase> PieceTakeEnemyValidTestCases
@@ -31,6 +37,12 @@ public class PieceTake
                 new Coordinates(1, Rank.G), 
                 true, 
                 "PawnTakeValid");
+            
+            yield return new PieceTestCase(
+                new Coordinates(7, Rank.F),
+                new Coordinates(6, Rank.E), 
+                true, 
+                "PawnTakeBlackValid");
             
             yield return new PieceTestCase(
                 new Coordinates(0, Rank.E),
@@ -73,6 +85,18 @@ public class PieceTake
                 new Coordinates(2, Rank.F), 
                 false, 
                 "TryToTakeAlly");
+            
+            yield return new PieceTestCase(
+                new Coordinates(5, Rank.E),
+                new Coordinates(6, Rank.F), 
+                false, 
+                "PawnTakeInvalid");
+            
+            yield return new PieceTestCase(
+                new Coordinates(5, Rank.C),
+                new Coordinates(4, Rank.D), 
+                false, 
+                "PawnWhiteTakeInvalid");
         }
     }
 
@@ -92,7 +116,7 @@ public class PieceTake
     }
     
     [Test, TestCaseSource(nameof(PieceTakeInvalidTestCases))]
-    public void TakeEnemyInvalid(PieceTestCase coordinatesTestCase)
+    public void TakeInvalid(PieceTestCase coordinatesTestCase)
     {
         var piece = Game.Pieces[coordinatesTestCase.CordFrom];
         var isMoveValid = piece.IsMoveValid(coordinatesTestCase.CordFrom, coordinatesTestCase.CordTo);

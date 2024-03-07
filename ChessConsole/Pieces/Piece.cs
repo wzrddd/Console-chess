@@ -9,7 +9,7 @@ public abstract class Piece(Color color)
     
     public abstract bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo);
     
-    public bool TryTake(Coordinates cordFrom, Coordinates cordTo)
+    public virtual bool TryTake(Coordinates cordFrom, Coordinates cordTo)
     {
         if (Game.Pieces[cordTo].Color != Game.Pieces[cordFrom].Color)
         {
