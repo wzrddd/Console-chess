@@ -11,9 +11,10 @@ internal class Program
         
         Game.Render();
         
-        while (true)
+        while (!Game.IsGameOver)
         {
             Game.Loop();
         }
+        Console.WriteLine("Game Over!");
     }
 }
