@@ -20,8 +20,8 @@ public class Bishop(Color color) : Piece(color)
         if (xDiff != yDiff)
             return false;
         
-        var j = yMin + 1;
-        for (int i = xMin + 1; i < xMax; i++)
+        var j = yMin;
+        for (int i = xMin; i < xMax; i++)
         {
             if (Game.Pieces.ContainsKey(new Coordinates(j, (Rank)i)))
             {

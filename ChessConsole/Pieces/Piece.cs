@@ -9,14 +9,20 @@ public abstract class Piece(Color color)
     
     public abstract bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo);
 
+    protected virtual void RemovePiece(Coordinates coordinates)
+    {
+        Game.Pieces.Remove(coordinates);
+    }
+        
     protected bool TryTake(Coordinates cordFrom, Coordinates cordTo)
     {
-        if (Game.Pieces[cordTo].Color != Game.Pieces[cordFrom].Color)
+        if (Game.Pieces[cordTo].Color != Game.Pieces[cordFrom].Color) 
         {
-            Game.Pieces.Remove(cordTo);
+            Game.Pieces[cordTo].RemovePiece(cordTo);
             Game.Pieces.ChangeKey(cordFrom, cordTo);
             return true;
         }
 
         return false;
-    }}
+    }
+}

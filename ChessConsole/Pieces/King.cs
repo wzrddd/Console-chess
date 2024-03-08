@@ -22,4 +22,10 @@ public class King(Color color) : Piece(color)
         
         return isMoveCorrect;
     }
+
+    protected override void RemovePiece(Coordinates coordinates)
+    {
+        Game.IsGameOver = true;
+        base.RemovePiece(coordinates);
+    }
 }

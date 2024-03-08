@@ -8,6 +8,7 @@ public static class Game
 {
     private static Color _turn = Color.White;
 
+    public static bool IsGameOver = false;
     public static Dictionary<Coordinates, Piece> Pieces = new()
     {
         {new Coordinates(0, Rank.A), new Rook(Color.White)},
@@ -55,7 +56,7 @@ public static class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    public static Piece Move(Coordinates cordFrom, Coordinates cordTo)
+    private static bool Move(Coordinates cordFrom, Coordinates cordTo)
     {
         var pieceToMove = Pieces[cordFrom];
         
@@ -64,10 +65,10 @@ public static class Game
             Pieces.ChangeKey(cordFrom, cordTo);
             _turn = _turn == Color.White ? Color.Black : Color.White;
             
-            return pieceToMove;
+            return true;
         }
         
-        return null!;
+        return false;
     }
 
     public static void Loop()
@@ -82,8 +83,7 @@ public static class Game
         var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
         var move = Move(cordFrom, cordTo);
 
-        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-        if (move != null)
+        if (move)
         {
             Console.Clear();
             Render();
