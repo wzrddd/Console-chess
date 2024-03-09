@@ -12,7 +12,7 @@ public class PieceMove
         {new Coordinates(0, Rank.C), new Rook(Color.White)},
         {new Coordinates(0, Rank.D), new Bishop(Color.White)},
         {new Coordinates(0, Rank.E), new Knight(Color.White)},
-        {new Coordinates(4, Rank.F), new Pawn(Color.White)},
+        {new Coordinates(3, Rank.F), new Pawn(Color.White)},
 
         {new Coordinates(7, Rank.A), new King(Color.Black)},
         {new Coordinates(7, Rank.B), new Queen(Color.Black)},
@@ -34,14 +34,8 @@ public class PieceMove
         get
         {
             yield return new PieceTestCase(
-                new Coordinates(4, Rank.F),
-                new Coordinates(5, Rank.F), 
-                true, 
-                "TestValidPawnMove");
-            
-            yield return new PieceTestCase(
-                new Coordinates(4, Rank.F),
-                new Coordinates(6, Rank.F), 
+                new Coordinates(3, Rank.F),
+                new Coordinates(4, Rank.F), 
                 true, 
                 "TestValidPawnMove");
             
@@ -82,8 +76,8 @@ public class PieceMove
         get
         {
             yield return new PieceTestCase(
-                new Coordinates(4, Rank.F),
-                new Coordinates(3, Rank.F), 
+                new Coordinates(3, Rank.F),
+                new Coordinates(2, Rank.F), 
                 false,
                 "TestInvalidPawnMove");
             

@@ -11,23 +11,23 @@ public class Bishop(Color color) : Piece(color)
 
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
     {
-        var yMin = Math.Min(cordFrom.File, cordTo.File); 
-        var xMin = Math.Min((int)cordFrom.Rank, (int)cordTo.Rank);
-        var xMax = Math.Max((int)cordFrom.Rank, (int)cordTo.Rank);
+        var xDirection = cordFrom.Rank < cordTo.Rank ? 1 : -1;
+        var yDirection = cordFrom.File < cordTo.File ? 1 : -1;
         var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
 
         if (xDiff != yDiff)
             return false;
-        
-        var j = yMin;
-        for (int i = xMin; i < xMax; i++)
+
+        var cords = cordFrom;
+        while (cords.Rank != cordTo.Rank && cords.File != cordTo.File)
         {
-            if (Game.Pieces.ContainsKey(new Coordinates(j, (Rank)i)))
+            cords.Rank += xDirection;
+            cords.File += yDirection;
+            if (Game.Pieces.ContainsKey(cords))
             {
                 return false;
             }
-            j++;
         }
 
         if (Game.Pieces.ContainsKey(cordTo))
