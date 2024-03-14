@@ -13,56 +13,22 @@ public class Queen(Color color) : Piece(color)
     {
         var xDiff = Math.Abs((int)cordFrom.Rank - (int)cordTo.Rank);
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
-        var isMoveCorrect = xDiff == yDiff || cordFrom.Rank == cordTo.Rank || cordFrom.File == cordTo.File;
 
         if (xDiff == yDiff)
         {
-            var yMin = Math.Min(cordFrom.File, cordTo.File);
-            var xMin = Math.Min((int)cordFrom.Rank, (int)cordTo.Rank);
-            var xMax = Math.Max((int)cordFrom.Rank, (int)cordTo.Rank);
-            
-            var j = yMin + 1;
-            for (int i = xMin + 1; i < xMax; i++)
-            {
-                if (Game.Pieces.ContainsKey(new Coordinates(j, (Rank)i)))
-                {
-                    return false;
-                }
-                j++;
-            }
+            return CommonMoves.CheckDiagonal(cordFrom, cordTo);
         }        
         
         if (cordFrom.Rank == cordTo.Rank)
         {
-            var min = Math.Min(cordFrom.File, cordTo.File);
-            var max = Math.Max(cordFrom.File, cordTo.File);
-            for (var i = min + 1; i < max; i++)
-            {
-                if (Game.Pieces.ContainsKey(new Coordinates(i, cordFrom.Rank)))
-                {
-                    return false;
-                }
-            }
+            return CommonMoves.CheckVertical(cordFrom, cordTo);
         }
         
         if (cordFrom.File == cordTo.File)
         {
-            var min = Math.Min((int)cordFrom.Rank, (int)cordTo.Rank);
-            var max = Math.Max((int)cordFrom.Rank, (int)cordTo.Rank);
-            for (var i = min + 1; i < max; i++)
-            {
-                if (Game.Pieces.ContainsKey(new Coordinates(cordFrom.File, (Rank)i)))
-                {
-                    return false;
-                }
-            }
+            return CommonMoves.CheckHorizontal(cordFrom, cordTo);
         }
         
-        if (Game.Pieces.ContainsKey(cordTo) && isMoveCorrect)
-        {
-            return TryTake(cordFrom, cordTo);
-        }
-        
-        return isMoveCorrect;
+        return false;
     }
 }
