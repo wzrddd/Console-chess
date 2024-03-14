@@ -14,7 +14,7 @@ public abstract class Piece(Color color)
         Game.Pieces.Remove(coordinates);
     }
         
-    protected bool TryTake(Coordinates cordFrom, Coordinates cordTo)
+    public bool TryTake(Coordinates cordFrom, Coordinates cordTo)
     {
         if (Game.Pieces[cordTo].Color != Game.Pieces[cordFrom].Color) 
         {
