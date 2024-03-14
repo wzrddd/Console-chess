@@ -16,7 +16,7 @@ public class PieceTake
 
         {new Coordinates(1, Rank.G), new Pawn(Color.Black)},
         {new Coordinates(2, Rank.F), new Pawn(Color.Black)},
-        {new Coordinates(1, Rank.D), new Pawn(Color.Black)},
+        {new Coordinates(3, Rank.A), new Pawn(Color.Black)},
         {new Coordinates(4, Rank.C), new Pawn(Color.Black)},
         {new Coordinates(3, Rank.E), new Pawn(Color.Black)},
         {new Coordinates(1, Rank.A), new Pawn(Color.Black)},
@@ -52,7 +52,7 @@ public class PieceTake
             
             yield return new PieceTestCase(
                 new Coordinates(0, Rank.D),
-                new Coordinates(2, Rank.B), 
+                new Coordinates(3, Rank.A), 
                 true, 
                 "BishopTakeValid");
             
