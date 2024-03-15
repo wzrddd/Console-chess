@@ -56,7 +56,7 @@ public static class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    private static bool Move(Coordinates cordFrom, Coordinates cordTo)
+    public static bool Move(Coordinates cordFrom, Coordinates cordTo)
     {
         var pieceToMove = Pieces[cordFrom];
         

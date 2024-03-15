@@ -4,7 +4,7 @@ namespace ChessConsole.Pieces;
 
 public class Pawn(Color color) : Piece(color)
 {
-    private bool IsFirstMove = true;
+    private bool _isFirstMove = true;
     
     public override string ToString()
     {
@@ -21,7 +21,7 @@ public class Pawn(Color color) : Piece(color)
             ? cordTo.File - cordFrom.File == 1
             : cordFrom.File - cordTo.File == 1;
 
-        if (IsFirstMove)
+        if (_isFirstMove)
         { 
             var min = Math.Min(cordFrom.File, cordTo.File);
             var max = Math.Max(cordFrom.File, cordTo.File);
@@ -37,7 +37,7 @@ public class Pawn(Color color) : Piece(color)
                 ? cordTo.File - cordFrom.File == 2 || cordTo.File - cordFrom.File == 1
                 : cordFrom.File - cordTo.File == 2 || cordFrom.File - cordTo.File == 1;
 
-            IsFirstMove = false;
+            _isFirstMove = false;
         }
         
         if (Game.Pieces.ContainsKey(cordTo) && isMoveCorrect && xDiff == 1 && yDiff == 1)
