@@ -4,6 +4,8 @@ namespace ChessConsole.Pieces;
 
 public class Rook(Color color) : Piece(color) 
 {
+    public bool IsFirstMove = true;
+
     public override string ToString()
     {
         return Color == Color.White ? "R" : "r";
