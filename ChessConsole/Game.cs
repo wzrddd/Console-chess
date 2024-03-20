@@ -74,16 +74,29 @@ public static class Game
     public static void Loop()
     {
         Console.WriteLine($"{_turn} turn!");
-        Console.Write("Pick piece: ");
-        var mFrom = Console.ReadLine()!.ToCharArray();
-        Console.Write("Move to: ");
-        var mTo = Console.ReadLine()!.ToCharArray();
-            
-        var cordFrom = new Coordinates(mFrom[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mFrom[0].ToString().ToUpper()));
-        var cordTo = new Coordinates(mTo[1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), mTo[0].ToString().ToUpper()));
-        var move = Move(cordFrom, cordTo);
+        Console.Write("> ");
+        var move = Console.ReadLine()?.Split(' ');
+        var isMoveValid = false;
+        
+        if (move == null)
+        {
+            Console.WriteLine("Move is not valid");
+            return;
+        }
 
-        if (move)
+        try
+        {
+            var cordFrom = new Coordinates(move[0][1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), move[0][0].ToString().ToUpper()));
+            var cordTo = new Coordinates(move[1][1] - '0' - 1, (Rank)Enum.Parse(typeof(Rank), move[1][0].ToString().ToUpper()));
+            isMoveValid = Move(cordFrom, cordTo);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Move is not valid");
+            return;
+        }
+        
+        if (isMoveValid)
         {
             Console.Clear();
             Render();
