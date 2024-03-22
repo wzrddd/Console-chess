@@ -13,4 +13,4 @@ FROM -> TO (promotion if promoted) eg. e2->e4
 - [x]  All pieces with basic movement
 - [ ]  En passant
 - [x]  Castling
-- [ ]  Promotion
+- [x]  Promotion
