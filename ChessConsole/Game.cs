@@ -11,22 +11,7 @@ public static class Game
     public static bool IsGameOver = false;
     public static Dictionary<Coordinates, Piece> Pieces = new()
     {
-        {new Coordinates(0, Rank.A), new Rook(Color.White)},
-        {new Coordinates(0, Rank.B), new Knight(Color.White)},
-        {new Coordinates(0, Rank.C), new Bishop(Color.White)},
-        {new Coordinates(0, Rank.D), new Queen(Color.White)},
-        {new Coordinates(0, Rank.E), new King(Color.White)},
-        {new Coordinates(0, Rank.F), new Bishop(Color.White)},
-        {new Coordinates(0, Rank.G), new Knight(Color.White)},
-        {new Coordinates(0, Rank.H), new Rook(Color.White)},
-        {new Coordinates(7, Rank.A), new Rook(Color.Black)},
-        {new Coordinates(7, Rank.B), new Knight(Color.Black)},
-        {new Coordinates(7, Rank.C), new Bishop(Color.Black)},
-        {new Coordinates(7, Rank.D), new Queen(Color.Black)},
-        {new Coordinates(7, Rank.E), new King(Color.Black)},
-        {new Coordinates(7, Rank.F), new Bishop(Color.Black)},
-        {new Coordinates(7, Rank.G), new Knight(Color.Black)},
-        {new Coordinates(7, Rank.H), new Rook(Color.Black)}
+
     };
     
     static Game()
@@ -56,7 +41,7 @@ public static class Game
         Console.WriteLine("   (A)(B)(C)(D)(E)(F)(G)(H)");
     }
 
-    public static bool Move(Coordinates cordFrom, Coordinates cordTo)
+    private static bool Move(Coordinates cordFrom, Coordinates cordTo)
     {
         var pieceToMove = Pieces[cordFrom];
         
@@ -65,6 +50,14 @@ public static class Game
             Pieces.ChangeKey(cordFrom, cordTo);
             _turn = _turn == Color.White ? Color.Black : Color.White;
             
+            if (cordTo.File is 0 or 7 && pieceToMove is Pawn pawnToMove)
+            {
+                Console.WriteLine("Pick piece to promote(Q, N, B, R)");
+                Console.Write("> ");
+                var promotion = Console.ReadLine();
+                if (promotion != null) pawnToMove.ProcessPromotion(cordTo, promotion.ToLower());
+            }
+
             return true;
         }
         
@@ -76,7 +69,7 @@ public static class Game
         Console.WriteLine($"{_turn} turn!");
         Console.Write("> ");
         var move = Console.ReadLine()?.Split(' ');
-        var isMoveValid = false;
+        bool isMoveValid;
         
         if (move == null)
         {

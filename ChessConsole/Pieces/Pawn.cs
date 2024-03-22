@@ -1,10 +1,12 @@
-﻿using ChessConsole.Enums;
+﻿using System.Security.Cryptography;
+using ChessConsole.Enums;
 
 namespace ChessConsole.Pieces;
 
 public class Pawn(Color color) : Piece(color)
 {
     private bool _isFirstMove = true;
+    private bool _isCanPromoted = false;
     
     public override string ToString()
     {
@@ -44,5 +46,31 @@ public class Pawn(Color color) : Piece(color)
             return TryTake(cordFrom, cordTo);
         
         return isMoveCorrect;
+    }
+
+    public void ProcessPromotion(Coordinates coordinates, string piece)
+    {
+        var pawn = Game.Pieces[coordinates];
+        
+        // TODO: find way how to improve this part (i don't like it, but i don't know how to do it better)
+        switch (piece)
+        {
+            case "q":
+                Game.Pieces.Remove(coordinates);
+                Game.Pieces.Add(coordinates, new Queen(pawn.Color));
+                break;
+            case "n":
+                Game.Pieces.Remove(coordinates);
+                Game.Pieces.Add(coordinates, new Knight(pawn.Color));
+                break;
+            case "b":
+                Game.Pieces.Remove(coordinates);
+                Game.Pieces.Add(coordinates, new Bishop(pawn.Color));
+                break;
+            case "r":
+                Game.Pieces.Remove(coordinates);
+                Game.Pieces.Add(coordinates, new Rook(pawn.Color));
+                break;
+        }
     }
 }
