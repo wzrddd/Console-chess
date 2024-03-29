@@ -6,7 +6,7 @@ public class Queen(Color color) : Piece(color)
 {
     public override string ToString()
     {
-        return Color == Color.White ? "Q" : "q";
+        return Color == Color.White ? "\u2655" : "\u265b";
     }
 
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)

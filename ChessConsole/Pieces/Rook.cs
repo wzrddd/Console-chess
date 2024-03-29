@@ -8,7 +8,7 @@ public class Rook(Color color) : Piece(color)
 
     public override string ToString()
     {
-        return Color == Color.White ? "R" : "r";
+        return Color == Color.White ? "\u2656" : "\u265c";
     }
     
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
