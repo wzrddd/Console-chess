@@ -4,7 +4,7 @@ namespace ChessConsole.Pieces;
 
 public class King(Color color) : Piece(color)
 {
-    public bool _isFirstMove = true;
+    private bool _isFirstMove = true;
 
     public override string ToString()
     {
@@ -17,7 +17,7 @@ public class King(Color color) : Piece(color)
         var yDiff = Math.Abs(cordFrom.File - cordTo.File);
         var isMoveCorrect = xDiff <= 1 && yDiff <= 1;
 
-        if (Game.Pieces[cordTo] is Rook rook && _isFirstMove && rook.Color == Color && rook.IsFirstMove)
+        if (Game.Pieces.ContainsKey(cordTo) && Game.Pieces[cordTo] is Rook rook && _isFirstMove && rook.Color == Color && rook.IsFirstMove)
         {
             Castle(cordFrom, cordTo);
             return true;
