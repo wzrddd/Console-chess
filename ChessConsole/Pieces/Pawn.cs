@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using ChessConsole.Enums;
+﻿using ChessConsole.Enums;
 
 namespace ChessConsole.Pieces;
 
@@ -9,7 +8,7 @@ public class Pawn(Color color) : Piece(color)
     
     public override string ToString()
     {
-        return Color == Color.White ? "\u2659" : "\u265f\ufe0e";
+        return Color == Color.White ? "\u2659" : "\u265F";
     }
 
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
