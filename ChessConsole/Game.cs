@@ -11,7 +11,22 @@ public static class Game
     public static bool IsGameOver = false;
     public static Dictionary<Coordinates, Piece> Pieces = new()
     {
-
+        {new Coordinates(0, Rank.A), new Rook(Color.White)},
+        {new Coordinates(0, Rank.B), new Knight(Color.White)},
+        {new Coordinates(0, Rank.C), new Bishop(Color.White)},
+        {new Coordinates(0, Rank.D), new Queen(Color.White)},
+        {new Coordinates(0, Rank.E), new King(Color.White)},
+        {new Coordinates(0, Rank.F), new Bishop(Color.White)},
+        {new Coordinates(0, Rank.G), new Knight(Color.White)},
+        {new Coordinates(0, Rank.H), new Rook(Color.White)},
+        {new Coordinates(7, Rank.A), new Rook(Color.Black)},
+        {new Coordinates(7, Rank.B), new Knight(Color.Black)},
+        {new Coordinates(7, Rank.C), new Bishop(Color.Black)},
+        {new Coordinates(7, Rank.D), new Queen(Color.Black)},
+        {new Coordinates(7, Rank.E), new King(Color.Black)},
+        {new Coordinates(7, Rank.F), new Bishop(Color.Black)},
+        {new Coordinates(7, Rank.G), new Knight(Color.Black)},
+        {new Coordinates(7, Rank.H), new Rook(Color.Black)}
     };
     
     static Game()

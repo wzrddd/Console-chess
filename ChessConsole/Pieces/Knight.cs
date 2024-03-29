@@ -6,7 +6,7 @@ public class Knight(Color color) : Piece(color)
 {
     public override string ToString()
     {
-        return Color == Color.White ? "N" : "n";
+        return Color == Color.White ? "\u2658" : "\u265e";
     }
 
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)

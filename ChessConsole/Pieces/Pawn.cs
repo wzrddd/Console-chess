@@ -6,11 +6,10 @@ namespace ChessConsole.Pieces;
 public class Pawn(Color color) : Piece(color)
 {
     private bool _isFirstMove = true;
-    private bool _isCanPromoted = false;
     
     public override string ToString()
     {
-        return Color == Color.White ? "P" : "p";
+        return Color == Color.White ? "\u2659" : "\u265f\ufe0e";
     }
 
     public override bool IsMoveValid(Coordinates cordFrom, Coordinates cordTo)
